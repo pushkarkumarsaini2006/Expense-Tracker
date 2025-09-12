@@ -106,24 +106,26 @@ export function NavigationBar() {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        <div className="md:hidden flex items-center justify-center space-x-1 mt-3 pb-2">
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            return (
-              <Link key={item.path} to={item.path}>
-                <Button 
-                  variant={isActive(item.path) ? "default" : "ghost"} 
-                  size="sm"
-                  className="h-8 px-2"
-                >
-                  <Icon className="w-3 h-3 mr-1" />
-                  <span className="text-xs">{item.label}</span>
-                </Button>
-              </Link>
-            );
-          })}
-        </div>
+        {/* Mobile Navigation - Only show if user is logged in */}
+        {user && (
+          <div className="md:hidden flex items-center justify-center space-x-1 mt-3 pb-2">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <Link key={item.path} to={item.path}>
+                  <Button 
+                    variant={isActive(item.path) ? "default" : "ghost"} 
+                    size="sm"
+                    className="h-8 px-2"
+                  >
+                    <Icon className="w-3 h-3 mr-1" />
+                    <span className="text-xs">{item.label}</span>
+                  </Button>
+                </Link>
+              );
+            })}
+          </div>
+        )}
       </div>
     </nav>
   );
